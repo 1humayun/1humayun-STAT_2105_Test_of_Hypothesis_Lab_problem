@@ -6,16 +6,29 @@ stature=c("obese","lean","lean","lean","lean","lean","lean",
 
 ex.lean = expend[stature == "lean"]
 ex.obese = expend[stature == "obese"]
-m1 = mean(ex.lean)
-m2 = mean(ex.obese)
-s1 = sd(ex.lean)
-s2 = sd(ex.obese)
-n1 = length(ex.lean)
-n2 = length(ex.obese)
 
-t.stat = (m1-m2)/((s1/sqrt(n1))+(s2/sqrt(n2)))
+m1 = mean(ex.lean)
+m1
+
+m2 = mean(ex.obese)
+m2
+s1 = sd(ex.lean)
+s1
+s2 = sd(ex.obese)
+s2
+n1 = length(ex.lean)
+n1
+n2 = length(ex.obese)
+n2
+df = n1+n2-2
+df
+
+s.sq = ((n1-1)s1^2 + (n2-1)s2^2)/df
+
+t.stat = (m1-m2)/sqrt(s.sq((1/n1)+(1/n2)))
 cat("Observed value of t statistic: ", t.stat, "\n")
-df = n1+n2-1
+
+
 p.value = 2*pt(t.stat,df)
 cat("P value: ", p.value, "\n")
 
